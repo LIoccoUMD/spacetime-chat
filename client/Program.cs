@@ -174,7 +174,7 @@ void Reducer_OnSendMessageEvent(ReducerEventContext ctx, string text)
 void OnSubscriptionApplied(SubscriptionEventContext ctx)
 {
     Console.WriteLine("Connected");
-    // PrintMessagesInOrder(ctx.Db);
+    PrintMessagesInOrder(ctx.Db);
 }
 
 void PrintMessagesInOrder(RemoteTables tables)
