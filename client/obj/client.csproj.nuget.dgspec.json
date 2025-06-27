@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucia\\devLooch\\CursorChaos\\client\\client.csproj": {}
+    "C:\\Users\\lucia\\devLooch\\CursorPal\\client\\client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucia\\devLooch\\CursorChaos\\client\\client.csproj": {
+    "C:\\Users\\lucia\\devLooch\\CursorPal\\client\\client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucia\\devLooch\\CursorChaos\\client\\client.csproj",
+        "projectUniqueName": "C:\\Users\\lucia\\devLooch\\CursorPal\\client\\client.csproj",
         "projectName": "client",
-        "projectPath": "C:\\Users\\lucia\\devLooch\\CursorChaos\\client\\client.csproj",
+        "projectPath": "C:\\Users\\lucia\\devLooch\\CursorPal\\client\\client.csproj",
         "packagesPath": "C:\\Users\\lucia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucia\\devLooch\\CursorChaos\\client\\obj\\",
+        "outputPath": "C:\\Users\\lucia\\devLooch\\CursorPal\\client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lucia\\AppData\\Roaming\\NuGet\\NuGet.Config"

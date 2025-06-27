@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JRyPeoP4PF0=",
+  "dgSpecHash": "tn9A7JqMAUE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucia\\devLooch\\CursorChaos\\client\\client.csproj",
+  "projectFilePath": "C:\\Users\\lucia\\devLooch\\CursorPal\\client\\client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucia\\.nuget\\packages\\spacetimedb.bsatn.runtime\\1.2.1\\spacetimedb.bsatn.runtime.1.2.1.nupkg.sha512",
     "C:\\Users\\lucia\\.nuget\\packages\\spacetimedb.clientsdk\\1.2.1\\spacetimedb.clientsdk.1.2.1.nupkg.sha512"
