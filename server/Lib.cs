@@ -12,7 +12,6 @@ public static partial class Module
         [PrimaryKey]
         public Identity Client;
         public string? Name;
-        public bool Online;
         public bool isActive;
     }
 
@@ -55,7 +54,7 @@ public static partial class Module
     }
 
     /// <summary>
-    /// This will update the client's online status once they connect to the server
+    /// This will update the client's isActive status once they connect to the server
     /// </summary>
     /// <param name="ctx"></param>
     [Reducer(ReducerKind.ClientConnected)]
@@ -63,16 +62,18 @@ public static partial class Module
     {
         Log.Info($"Connect {ctx.Sender}");
         var user = ctx.Db.user.Client.Find(ctx.Sender);
-
-        if (user is not null)
+        if (user is null)
         {
-            user.Online = true;
+            ctx.Db.user.Insert(new User { Client = ctx.Sender, Name = null, isActive = true });
+        }
+        else
+        {
             user.isActive = true;
             ctx.Db.user.Client.Update(user);
         }
     }
     /// <summary>
-    /// This reducer will un-set the online status of the client when they disconnect.
+    /// This reducer will un-set the isActive status of the client when they disconnect.
     /// </summary>
     /// <param name="ctx"></param>
     public static void UserDisconnected(ReducerContext ctx)
@@ -82,7 +83,6 @@ public static partial class Module
 
         if (user is not null)
         {
-            user.Online = false;
             user.isActive = false;
             ctx.Db.user.Client.Update(user);
         }
@@ -90,18 +90,30 @@ public static partial class Module
 
     public static void UpdateCursor(ReducerContext ctx, float x, float y)
     {
-        var cursor = ctx.Db.cursor.Insert(new Cursor
+        var user = ctx.Db.user.Client.Find(ctx.Sender);
+        var cursor = ctx.Db.cursor.Insert(new Cursor());
+        if (cursor is not null)
         {
-            Client = ctx.Sender,
-            X = x,
-            Y = y,
-            LastUpdated = ctx.Timestamp
-        });
-
-        // if (ctx.Timestamp.CompareTo(cursor.LastUpdated) > 5000000)
+            cursor.X = x;
+            cursor.Y = y;
+            cursor.LastUpdated = ctx.Timestamp;
+            ctx.Db.cursor.Client.Update(cursor);
+        }
+        else
         {
-            // Do not draw cursor | Change field then update
-            
+            ctx.Db.cursor.Insert(new Cursor { Client = ctx.Sender, X = x, Y = y, LastUpdated = ctx.Timestamp });
+        }
+        if (user is not null)
+        {
+            user.isActive = true;
+            ctx.Db.user.Client.Update(user);
+        }
+        if ((user is not null) && (ctx.Timestamp.CompareTo(cursor.LastUpdated) > 2000000))
+        {
+            TimeSpan difference = ctx.Timestamp - cursor.LastUpdated;
+            user.isActive = false;
+            ctx.Db.user.Client.Update(user);
+            // Do not draw cursor
         }
 
     }
